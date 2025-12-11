@@ -164,7 +164,6 @@ export default function App() {
   onTimeUpdate={handleTimeUpdate}
   onEnded={nextSong}
   onLoadedMetadata={handleTimeUpdate}
-  // crossOrigin="anonymous"  <-- 注释掉或直接删除这一行
   onError={(e) => {
     const error = e.target.error;
     console.error("播放出错:", error);
