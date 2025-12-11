@@ -159,13 +159,18 @@ export default function App() {
   return (
     <div className={`min-h-screen w-full bg-gradient-to-br ${currentSong.color} bg-gray-900 text-white transition-colors duration-700 ease-in-out flex flex-col items-center justify-center font-sans overflow-hidden`}>
       <audio
-        ref={audioRef}
-        src={currentSong.url}
-        onTimeUpdate={handleTimeUpdate}
-        onEnded={handleEnded}
-        onLoadedMetadata={handleTimeUpdate}
-        onError={() => alert("无法播放此链接，请检查链接是否有效或存在跨域限制。")}
-      />
+  ref={audioRef}
+  src={currentSong.url}
+  onTimeUpdate={handleTimeUpdate}
+  onEnded={nextSong}
+  onLoadedMetadata={handleTimeUpdate}
+  // crossOrigin="anonymous"  <-- 注释掉或直接删除这一行
+  onError={(e) => {
+    const error = e.target.error;
+    console.error("播放出错:", error);
+    // 这里可以加一个更友好的提示，比如判断是不是混合内容错误
+  }}
+/>
 
       {/* 隐藏的文件输入框 */}
       <input 
